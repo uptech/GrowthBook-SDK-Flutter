@@ -18,8 +18,8 @@ class FeatureDataSource {
     return model;
   }
 
-  late FeaturedDataModel model;
-  late Map<String, dynamic> data;
+  FeaturedDataModel model = FeaturedDataModel(features: {});
+  Map<String, dynamic> data = {};
 
   /// Assign response to local variable [data]
   void onSuccess(response) {
@@ -28,6 +28,8 @@ class FeatureDataSource {
 
   /// Initialize [model] from the [data]
   void setUpModel() {
-    model = FeaturedDataModel.fromJson(data);
+    if (data.isNotEmpty) {
+      model = FeaturedDataModel.fromJson(data);
+    }
   }
 }
